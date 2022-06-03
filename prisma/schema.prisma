@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model item {
+  id       Int      @id @default(autoincrement())
+  os       String
+  model    String
+  userId   Int
+  status    Status @default(Avaliation)
+  createTime DateTime @default(now()) @db.Timestamp(6)
+  updateTime DateTime  @db.Timestamp(6) @default(now())
+  elapsedTime Int @default(0)
+  ffOqc    Boolean @default(false)
+  users    users    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model sessions {
+  id     Int    @id @default(autoincrement())
+  token  String @unique
+  userId Int
+  users  users  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model users {
+  id       Int        @id @default(autoincrement())
+  name     String     
+  role     Role       @default(USER)
+  email    String     @unique
+  password String
+  item     item[]
+  ascCode  Ascs
+  sessions sessions[]
+
+  @@map("Users")
+}
+
+enum Role {
+  USER
+  OQC
+  ADMIN
+}
+
+enum Ascs {
+  AJU3198122
+  SLZ5286953
+}
+
+enum Status {
+  Avaliation
+  PendingSaw
+  PendingCost
+  PendingParts
+  PendingOthers
+  InRepair
+  Finished
+  OQCFail
+}
