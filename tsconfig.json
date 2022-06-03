@@ -7,5 +7,10 @@
   },
   "ts-node": {
     "esm": true
+  },
+  "plugins": [
+    {
+      "transform": "typescript-transform-paths"
+    }],
+    "include": ["src"]
   }
-}

@@ -1,4 +1,5 @@
 import cors from "cors";
+import "reflect-metadata";
 import "express-async-errors"; // dor de cabeça
 import dotenv from "dotenv";
 import express, { json } from "express";
