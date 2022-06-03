@@ -11,9 +11,6 @@
 		"dev": "nodemon src/server.ts"
 	},
 	"keywords": [],
-	"engines": {
-		"node": "16.15.1"
-	},
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
