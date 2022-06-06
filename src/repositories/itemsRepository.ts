@@ -13,9 +13,13 @@ async function Insert(item: createItemType) {
 }
 
 async function FindItembyOs(os: string) {
-	const result = await prisma.item.findUnique({
+	const result = await prisma.item.findMany({
 		where: {
 			os,
+		},
+		include: {
+			userChanged: { select: { name: true, id: true } },
+			userCreated: { select: { name: true, id: true } },
 		},
 	});
 	return result;
