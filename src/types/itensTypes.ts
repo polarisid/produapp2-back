@@ -1,9 +1,11 @@
-import { item } from "@prisma/client";
+import { item, historic } from "@prisma/client";
 
 type createItemType = Omit<
 	item,
 	"id" | "status" | "updateTime" | "elapsedTime" | "ffOqc" | "createTime"
 >;
+
+type createHistoricType = Omit<historic, "id" | "createdAt">;
 
 enum Status {
 	Finished = "Finished",
@@ -16,4 +18,4 @@ enum Status {
 	Avaliation = "Avaliation",
 }
 
-export { createItemType, Status };
+export { createItemType, Status, createHistoricType };

@@ -10,8 +10,14 @@ async function GetWorkSpace(req: Request, res: Response) {
 
 async function InsertNewItem(req: Request, res: Response) {
 	const { os, model } = res.locals;
-	const item = { os, model, userId: res.locals.user.id } as createItemType;
+	const item = {
+		os,
+		model,
+		userId: res.locals.user.id,
+		userIdUpdated: res.locals.user.id,
+	} as createItemType;
 	await itemsServices.InsertNewItemOnDB(item);
+
 	res.sendStatus(201);
 }
 
@@ -36,4 +42,16 @@ async function UpdateElapsedTime(req: Request, res: Response) {
 	);
 	res.sendStatus(204);
 }
-export default { GetWorkSpace, InsertNewItem, UpdateStatus, UpdateElapsedTime };
+
+async function SearchByOs(req: Request, res: Response) {
+	const { os } = req.params;
+	const items = await itemsServices.GetItemsByOs(os);
+	res.send(items);
+}
+export default {
+	GetWorkSpace,
+	InsertNewItem,
+	UpdateStatus,
+	UpdateElapsedTime,
+	SearchByOs,
+};

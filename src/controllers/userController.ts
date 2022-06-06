@@ -7,6 +7,7 @@ async function SignUp(req: Request, res: Response) {
 		...res.locals,
 		email: res.locals.email.toLowerCase(),
 		name: res.locals.name.toLowerCase(),
+		ascCode: res.locals.ascCode.toString(),
 	} as UserRegisterType;
 	await userService.createAndVerifyNewUser(user);
 	res.status(201).send("User created");

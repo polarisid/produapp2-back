@@ -28,4 +28,9 @@ itemsRouter.patch(
 	itemsController.UpdateElapsedTime
 );
 
+itemsRouter.get(
+	"/items/search/:os",
+	AuthenticationdMiddleware,
+	itemsController.SearchByOs
+);
 export default itemsRouter;
