@@ -33,4 +33,9 @@ itemsRouter.get(
 	AuthenticationdMiddleware,
 	itemsController.SearchByOs
 );
+itemsRouter.get(
+	"/items/finished",
+	AuthenticationdMiddleware,
+	itemsController.GetAllFinished
+);
 export default itemsRouter;

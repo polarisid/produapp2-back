@@ -50,10 +50,16 @@ async function SearchByOs(req: Request, res: Response) {
 	const items = await itemsServices.GetItemsByOs(os, user.id);
 	res.send(items);
 }
+async function GetAllFinished(req: Request, res: Response) {
+	const { user } = res.locals;
+	const items = await itemsServices.GetAllFinished();
+	res.send(items);
+}
 export default {
 	GetWorkSpace,
 	InsertNewItem,
 	UpdateStatus,
 	UpdateElapsedTime,
 	SearchByOs,
+	GetAllFinished,
 };

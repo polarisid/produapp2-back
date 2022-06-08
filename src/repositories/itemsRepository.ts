@@ -114,6 +114,19 @@ async function FindByOs(os: string) {
 	});
 	return result;
 }
+
+async function getAllFinished() {
+	const result = await prisma.item.findMany({
+		where: {
+			status: "Finished",
+		},
+		include: {
+			userChanged: { select: { name: true, id: true } },
+			userCreated: { select: { name: true, id: true } },
+		},
+	});
+	return result;
+}
 export default {
 	GetAscById,
 	GetAscByOs,
@@ -125,4 +138,5 @@ export default {
 	UpdateElapsedTime,
 	FindById,
 	FindItembyOs,
+	getAllFinished,
 };

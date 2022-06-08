@@ -22,6 +22,11 @@ async function InsertNewItemOnDB(item: createItemType) {
 	return result;
 }
 
+async function GetAllFinished() {
+	const result = await itemsRepository.getAllFinished();
+	return result;
+}
+
 async function GetItemsByUserIdAndIsOpen(userId: number) {
 	console.log(userId);
 	const result = await itemsRepository.GetItemsByUserIdAndIsOpen(userId);
@@ -80,4 +85,5 @@ export default {
 	UpdateElapsedTime,
 	GetItemsByUserIdAndIsOpen,
 	GetItemsByOs,
+	GetAllFinished,
 };
