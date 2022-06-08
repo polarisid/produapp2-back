@@ -88,6 +88,13 @@ async function GetItemsByUserIdAndIsOpen(userId: number) {
 }
 
 async function UpdateStatus(id: number, status: Status, userId: number) {
+	if (status == "OQCFail") {
+		const result = await prisma.item.update({
+			where: { id },
+			data: { status: { set: status } },
+		});
+		return result;
+	}
 	const result = await prisma.item.update({
 		where: { id },
 		data: {
