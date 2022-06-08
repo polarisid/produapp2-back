@@ -70,11 +70,12 @@ enum Ascs {
 
 enum Status {
   Avaliation
-  PendingSaw
-  PendingCost
-  PendingParts
-  PendingOthers
-  InRepair
+  Pending
+  TechnicalAdvice
   Finished
   OQCFail
+  ConfirmedCost
+  ConfirmedParts
+  ConfirmedSaw
+  OQCPass
 }

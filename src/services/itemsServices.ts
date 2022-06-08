@@ -1,4 +1,5 @@
 import itemsRepository from "../repositories/itemsRepository.js";
+import userRepository from "../repositories/userRepository.js";
 import {
 	createItemType,
 	Status,
@@ -30,6 +31,12 @@ async function GetItemsByUserIdAndIsOpen(userId: number) {
 async function UpdateStatus(id: number, status: Status, userId: number) {
 	const existingid = await itemsRepository.FindById(id);
 	if (!existingid) throw conflictError("Item not found");
+
+	const asc = await itemsRepository.GetAscById(id);
+	const { ascCode } = await userRepository.FindById(userId);
+	if (asc != ascCode) {
+		throw conflictError("You are not work in this asc");
+	}
 	// if (existingid.userId != userId)
 	// 	throw conflictError("You are not the owner of this item");
 	const updateDataHistoric = {
@@ -56,7 +63,13 @@ async function UpdateElapsedTime(
 	return result;
 }
 
-async function GetItemsByOs(os: string) {
+async function GetItemsByOs(os: string, userId: number) {
+	const asc = await itemsRepository.GetAscByOs(os);
+	const { ascCode } = await userRepository.FindById(userId);
+	if (asc != ascCode) {
+		throw conflictError("You are not work in this asc");
+	}
+
 	const result = await itemsRepository.FindItembyOs(os);
 	return result;
 }

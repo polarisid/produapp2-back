@@ -45,7 +45,9 @@ async function UpdateElapsedTime(req: Request, res: Response) {
 
 async function SearchByOs(req: Request, res: Response) {
 	const { os } = req.params;
-	const items = await itemsServices.GetItemsByOs(os);
+	const { user } = res.locals;
+	console.log(user);
+	const items = await itemsServices.GetItemsByOs(os, user.id);
 	res.send(items);
 }
 export default {

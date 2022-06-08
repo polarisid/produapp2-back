@@ -4,11 +4,37 @@ import {
 	Status,
 	createHistoricType,
 } from "../types/itensTypes.js";
+import userRepository from "./userRepository.js";
 
 async function Insert(item: createItemType) {
 	const result = await prisma.item.create({
 		data: item,
 	});
+	return result;
+}
+
+async function GetAscByOs(os: string) {
+	const result = await prisma.item.findUnique({
+		where: { os },
+		select: {
+			userCreated: { select: { ascCode: true } },
+		},
+	});
+	if (result) {
+		return result.userCreated.ascCode;
+	}
+	return result;
+}
+async function GetAscById(id: number) {
+	const result = await prisma.item.findUnique({
+		where: { id },
+		select: {
+			userCreated: { select: { ascCode: true } },
+		},
+	});
+	if (result) {
+		return result.userCreated.ascCode;
+	}
 	return result;
 }
 
@@ -40,27 +66,18 @@ async function FindById(id: number) {
 async function GetItemsByUserIdAndIsOpen(userId: number) {
 	const result = await prisma.item.findMany({
 		where: {
-			OR: [
+			AND: [
 				{
 					OR: [
-						{ status: "PendingSaw" },
-						{ status: "PendingCost" },
-						{ status: "PendingParts" },
-						{ status: "PendingOthers" },
+						{ status: "Avaliation" },
+						{ status: "OQCFail" },
+						{ status: "ConfirmedCost" },
+						{ status: "ConfirmedSaw" },
+						{ status: "ConfirmedParts" },
+						{ status: "TechnicalAdvice" },
 					],
 				},
-				{
-					AND: [
-						{
-							OR: [
-								{ status: "Avaliation" },
-								{ status: "InRepair" },
-								{ status: "OQCFail" },
-							],
-						},
-						{ userIdUpdated: userId },
-					],
-				},
+				{ userIdUpdated: userId },
 			],
 		},
 		include: {
@@ -98,6 +115,8 @@ async function FindByOs(os: string) {
 	return result;
 }
 export default {
+	GetAscById,
+	GetAscByOs,
 	UpdateHistoric,
 	Insert,
 	FindByOs,

@@ -10,12 +10,13 @@ type createHistoricType = Omit<historic, "id" | "createdAt">;
 enum Status {
 	Finished = "Finished",
 	OQCFail = "OQCFail",
-	InRepair = "InRepair",
-	PendingOthers = "PendingOthers",
-	PendingParts = "PendingParts",
-	PendingCost = "PendingCost",
-	PendingSaw = "PendingSaw",
+	OQCPass = "OQCPass",
+	Pending = "Pending",
 	Avaliation = "Avaliation",
+	ConfirmedCost = "ConfirmedCost",
+	ConfirmedSaw = "ConfirmedSaw",
+	ConfirmedParts = "ConfirmedParts",
+	TechnicalAdvice = "TechnicalAdvice",
 }
 
 export { createItemType, Status, createHistoricType };

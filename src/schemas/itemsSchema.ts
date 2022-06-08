@@ -14,12 +14,13 @@ const updateStatusSchema = joi.object({
 		.valid(
 			"Finished",
 			"OQCFail",
-			"InRepair",
-			"PendingOthers",
-			"PendingParts",
-			"PendingCost",
-			"PendingSaw",
-			"Avaliation"
+			"OQCPass",
+			"Pending",
+			"Avaliation",
+			"ConfirmedCost",
+			"ConfirmedSaw",
+			"ConfirmedParts",
+			"TechnicalAdvice"
 		)
 		.required(),
 });
