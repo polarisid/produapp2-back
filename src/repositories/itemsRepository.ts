@@ -91,7 +91,10 @@ async function UpdateStatus(id: number, status: Status, userId: number) {
 	if (status == "OQCFail") {
 		const result = await prisma.item.update({
 			where: { id },
-			data: { status: { set: status } },
+			data: {
+				status: { set: status },
+				ffOqc: { set: true },
+			},
 		});
 		return result;
 	}
