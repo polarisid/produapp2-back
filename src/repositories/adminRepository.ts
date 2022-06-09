@@ -40,6 +40,29 @@ async function GetDayReport(ascCode: "SLZ5286953" | "AJU3198122") {
 	return result;
 }
 
+async function GetHistoricReport(ascCode: "SLZ5286953" | "AJU3198122") {
+	const day = dayjs().format("YYYY-MM-DD");
+	const dayin = day + " 00:00:00.000";
+	const dayout = day + " 23:59:59.999";
+	const result = await prisma.historic.findMany({
+		where: {
+			AND: [
+				{ item: { userChanged: { ascCode: ascCode } } },
+				{
+					item: {
+						updateTime: {
+							gte: new Date(dayin),
+							lt: new Date(dayout),
+						},
+					},
+				},
+			],
+		},
+	});
+	return result;
+}
+
 export default {
 	GetDayReport,
+	GetHistoricReport,
 };

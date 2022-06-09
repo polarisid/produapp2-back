@@ -12,4 +12,10 @@ adminRouter.get(
 	adminController.GetDasboard
 );
 
+adminRouter.get(
+	"/admin/items/report/:asc",
+	AuthenticationdMiddleware,
+	adminController.GetReport
+);
+
 export default adminRouter;
