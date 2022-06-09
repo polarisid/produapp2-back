@@ -51,9 +51,7 @@ async function UpdateStatus(id: number, status: Status, userId: number) {
 	} as createHistoricType;
 
 	const result = await itemsRepository.UpdateStatus(id, status, userId);
-	if (status !== "OQCFail") {
-		const historic = await itemsRepository.UpdateHistoric(updateDataHistoric);
-	}
+	const historic = await itemsRepository.UpdateHistoric(updateDataHistoric);
 	return result;
 }
 
