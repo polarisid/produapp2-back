@@ -58,6 +58,22 @@ async function GetHistoricReport(ascCode: "SLZ5286953" | "AJU3198122") {
 				},
 			],
 		},
+		select: {
+			status: true,
+			createdAt: true,
+			item: {
+				select: {
+					os: true,
+					model: true,
+					status: true,
+				},
+			},
+			user: {
+				select: {
+					name: true,
+				},
+			},
+		},
 	});
 	return result;
 }
