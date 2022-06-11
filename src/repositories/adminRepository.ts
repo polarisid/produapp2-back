@@ -119,7 +119,7 @@ async function GetHistoricReportGroup(ascCode: "SLZ5286953" | "AJU3198122") {
 			},
 		},
 		orderBy: {
-			item: { os: "desc" },
+			createdAt: "desc",
 		},
 	});
 	return result;
