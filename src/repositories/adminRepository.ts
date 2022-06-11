@@ -88,12 +88,16 @@ async function GetHistoricReportGroup(ascCode: "SLZ5286953" | "AJU3198122") {
 			AND: [
 				{ item: { userChanged: { ascCode: ascCode } } },
 				{
-					item: {
-						updateTime: {
-							gte: new Date(dayin),
-							lte: new Date(dayout),
-						},
+					createdAt: {
+						gte: new Date(dayin),
+						lte: new Date(dayout),
 					},
+					// item: {
+					// 	updateTime: {
+					// 		gte: new Date(dayin),
+					// 		lte: new Date(dayout),
+					// 	},
+					// },
 				},
 			],
 		},
@@ -115,7 +119,7 @@ async function GetHistoricReportGroup(ascCode: "SLZ5286953" | "AJU3198122") {
 			},
 		},
 		orderBy: {
-			createdAt: "desc",
+			item: { os: "desc" },
 		},
 	});
 	return result;
