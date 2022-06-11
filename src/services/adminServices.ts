@@ -7,7 +7,7 @@ async function GetDashByAsc(asc: "SLZ5286953" | "AJU3198122") {
 }
 async function GetHistoricByAsc(asc: "SLZ5286953" | "AJU3198122") {
 	const date = new Date();
-	const result = await adminRepository.GetHistoricReport(asc);
+	const result = await adminRepository.GetHistoricReportGroup(asc);
 	return result;
 }
 

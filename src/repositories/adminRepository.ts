@@ -99,13 +99,13 @@ async function GetHistoricReportGroup(ascCode: "SLZ5286953" | "AJU3198122") {
 		},
 		select: {
 			status: true,
-
 			createdAt: true,
 			item: {
 				select: {
 					os: true,
 					model: true,
 					status: true,
+					updateTime: true,
 				},
 			},
 			user: {
@@ -123,5 +123,5 @@ async function GetHistoricReportGroup(ascCode: "SLZ5286953" | "AJU3198122") {
 
 export default {
 	GetDayReport,
-	GetHistoricReport,
+	GetHistoricReportGroup,
 };
