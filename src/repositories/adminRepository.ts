@@ -81,6 +81,8 @@ async function GetHistoricReportGroup(ascCode: "SLZ5286953" | "AJU3198122") {
 	const day = dayjs().format("YYYY-MM-DD");
 	const dayin = day + " 00:00:00.000";
 	const dayout = day + " 23:59:59.999";
+	console.log(dayin);
+	console.log(dayout);
 	const result = await prisma.historic.findMany({
 		where: {
 			AND: [
@@ -89,7 +91,7 @@ async function GetHistoricReportGroup(ascCode: "SLZ5286953" | "AJU3198122") {
 					item: {
 						updateTime: {
 							gte: new Date(dayin),
-							lt: new Date(dayout),
+							lte: new Date(dayout),
 						},
 					},
 				},
