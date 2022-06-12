@@ -79,6 +79,10 @@ async function GetItemsByOs(os: string, userId: number) {
 	return result;
 }
 
+async function getOverviewDay() {
+	const result = await itemsRepository.getRankByAvaliations();
+	return result;
+}
 export default {
 	InsertNewItemOnDB,
 	UpdateStatus,
@@ -86,4 +90,5 @@ export default {
 	GetItemsByUserIdAndIsOpen,
 	GetItemsByOs,
 	GetAllFinished,
+	getOverviewDay,
 };

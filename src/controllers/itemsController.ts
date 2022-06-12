@@ -55,6 +55,10 @@ async function GetAllFinished(req: Request, res: Response) {
 	const items = await itemsServices.GetAllFinished();
 	res.send(items);
 }
+async function getOverviewDay(req: Request, res: Response) {
+	const result = await itemsServices.getOverviewDay();
+	res.json(result);
+}
 export default {
 	GetWorkSpace,
 	InsertNewItem,
@@ -62,4 +66,5 @@ export default {
 	UpdateElapsedTime,
 	SearchByOs,
 	GetAllFinished,
+	getOverviewDay,
 };

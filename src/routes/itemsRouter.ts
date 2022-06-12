@@ -38,4 +38,9 @@ itemsRouter.get(
 	AuthenticationdMiddleware,
 	itemsController.GetAllFinished
 );
+itemsRouter.get(
+	"/items/overview/day",
+	AuthenticationdMiddleware,
+	itemsController.getOverviewDay
+);
 export default itemsRouter;

@@ -5,6 +5,7 @@ import {
 	createHistoricType,
 } from "../types/itensTypes.js";
 import userRepository from "./userRepository.js";
+import dayjs from "dayjs";
 
 async function Insert(item: createItemType) {
 	const result = await prisma.item.create({
@@ -149,4 +150,25 @@ export default {
 	FindById,
 	FindItembyOs,
 	getAllFinished,
+	getRankByAvaliations,
 };
+
+async function getRankByAvaliations() {
+	const day = dayjs("11/06/2022").format("YYYY-MM-DD");
+	const dayin = day + " 00:00:00.000";
+	const dayout = day + " 23:59:59.999";
+
+	const result = await prisma.item.groupBy({
+		by: ["userId"],
+		where: {
+			createTime: {
+				gte: new Date(dayin),
+				lte: new Date(dayout),
+			},
+		},
+		_count: {
+			os: true,
+		},
+	});
+	return result;
+}
