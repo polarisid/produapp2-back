@@ -154,7 +154,7 @@ export default {
 };
 
 async function getRankByAvaliations() {
-	const day = dayjs("11/06/2022").format("YYYY-MM-DD");
+	const day = dayjs().format("YYYY-MM-DD");
 	const dayin = day + " 00:00:00.000";
 	const dayout = day + " 23:59:59.999";
 
