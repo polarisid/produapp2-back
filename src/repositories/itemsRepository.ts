@@ -83,6 +83,7 @@ async function GetItemsByUserIdAndIsOpen(userId: number) {
 		},
 		include: {
 			userChanged: { select: { name: true, id: true } },
+			userCreated: { select: { name: true, id: true } },
 		},
 	});
 	return result;
