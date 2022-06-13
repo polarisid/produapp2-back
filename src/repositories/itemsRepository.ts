@@ -159,16 +159,16 @@ async function getRankByAvaliations() {
 	const dayin = day + " 00:00:00.000";
 	const dayout = day + " 23:59:59.999";
 
-	const result = await prisma.item.groupBy({
-		by: ["userId"],
-		where: {
-			createTime: {
-				gte: new Date(dayin),
-				lte: new Date(dayout),
-			},
-		},
-		_count: {
-			os: true,
+	const result = await prisma.item.findMany({
+		// by: ["userId"],
+		// where: {
+		// 	createTime: {
+		// 		gte: new Date(dayin),
+		// 		lte: new Date(dayout),
+		// 	},
+		// },
+		include: {
+			userCreated: { select: { name: true } },
 		},
 	});
 	return result;
