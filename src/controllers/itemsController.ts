@@ -21,6 +21,19 @@ async function InsertNewItem(req: Request, res: Response) {
 	res.sendStatus(201);
 }
 
+async function InsertNewItemBySupervisor(req: Request, res: Response) {
+	const { os, model, userIdUpdated } = res.locals;
+	const item = {
+		os,
+		model,
+		userId: userIdUpdated,
+		userIdUpdated: userIdUpdated,
+	} as createItemType;
+	await itemsServices.InsertNewItemOnDB(item);
+
+	res.sendStatus(201);
+}
+
 async function UpdateStatus(req: Request, res: Response) {
 	const { id } = req.params;
 	const { user } = res.locals;
@@ -67,4 +80,5 @@ export default {
 	SearchByOs,
 	GetAllFinished,
 	getOverviewDay,
+	InsertNewItemBySupervisor,
 };

@@ -16,6 +16,12 @@ itemsRouter.post(
 	AuthenticationdMiddleware,
 	itemsController.InsertNewItem
 );
+itemsRouter.post(
+	"/supervisor/items",
+	validateSchemaMiddleware(itemsSchema.createItemBySupervisorSchema),
+	AuthenticationdMiddleware,
+	itemsController.InsertNewItemBySupervisor
+);
 itemsRouter.patch(
 	"/items/workspace/status/:id",
 	validateSchemaMiddleware(itemsSchema.updateStatusSchema),

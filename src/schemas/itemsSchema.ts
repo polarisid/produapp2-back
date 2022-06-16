@@ -8,6 +8,11 @@ const createItemSchema = joi.object<receiveItemType>({
 	model: joi.string().required(),
 });
 
+const createItemBySupervisorSchema = joi.object<receiveItemType>({
+	os: joi.string().required(),
+	model: joi.string().required(),
+	userIdUpdated: joi.string().required(),
+});
 const updateStatusSchema = joi.object({
 	status: joi
 		.string()
@@ -25,4 +30,8 @@ const updateStatusSchema = joi.object({
 		.required(),
 });
 
-export default { createItemSchema, updateStatusSchema };
+export default {
+	createItemSchema,
+	updateStatusSchema,
+	createItemBySupervisorSchema,
+};
