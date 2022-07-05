@@ -130,7 +130,14 @@ async function FindByOs(os: string) {
 async function getAllFinished() {
 	const result = await prisma.item.findMany({
 		where: {
-			status: "Finished",
+			AND: [
+				{ status: "Finished" },
+				{
+					userCreated: {
+						ascCode: "AJU3198122",
+					},
+				},
+			],
 		},
 		include: {
 			userChanged: { select: { name: true, id: true } },

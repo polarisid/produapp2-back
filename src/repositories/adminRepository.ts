@@ -123,8 +123,21 @@ async function GetHistoricReportGroup(ascCode: "SLZ5286953" | "AJU3198122") {
 	});
 	return result;
 }
+async function GetUsersFromGroup(ascCode: "SLZ5286953" | "AJU3198122") {
+	const result = await prisma.users.findMany({
+		where: {
+			AND: [{ ascCode: ascCode }, { role: "USER" }],
+		},
+		select: {
+			id: true,
+			name: true,
+		},
+	});
+	return result;
+}
 
 export default {
 	GetDayReport,
 	GetHistoricReportGroup,
+	GetUsersFromGroup,
 };

@@ -46,4 +46,13 @@ async function GetReport(req: Request, res: Response) {
 	}
 }
 
-export default { GetDasboard, GetReport };
+async function GetUsersFromGroup(req: Request, res: Response) {
+	const { asc } = req.params;
+	const Asc = <Asc>asc.toString();
+	const result = await adminServices.GetUsersFromAsc(Asc);
+
+	console.log(result);
+	return res.send(result);
+}
+
+export default { GetDasboard, GetReport, GetUsersFromGroup };

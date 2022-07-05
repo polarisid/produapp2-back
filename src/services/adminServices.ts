@@ -11,4 +11,9 @@ async function GetHistoricByAsc(asc: "SLZ5286953" | "AJU3198122") {
 	return result;
 }
 
-export default { GetDashByAsc, GetHistoricByAsc };
+async function GetUsersFromAsc(asc: "SLZ5286953" | "AJU3198122") {
+	const result = await adminRepository.GetUsersFromGroup(asc);
+	return result;
+}
+
+export default { GetDashByAsc, GetHistoricByAsc, GetUsersFromAsc };

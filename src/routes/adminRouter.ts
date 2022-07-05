@@ -17,5 +17,10 @@ adminRouter.get(
 	AuthenticationdMiddleware,
 	adminController.GetReport
 );
+adminRouter.get(
+	"/admin/users/:asc",
+	// AuthenticationdMiddleware,
+	adminController.GetUsersFromGroup
+);
 
 export default adminRouter;
